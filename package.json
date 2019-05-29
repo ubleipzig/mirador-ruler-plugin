@@ -1,0 +1,66 @@
+{
+  "name": "mirador-ruler",
+  "version": "0.1.0",
+  "description": "a plugin for mirador v3 that adds a ruler to the canvas view",
+  "devDependencies": {
+    "@babel/core": "^7.4.3",
+    "@babel/preset-env": "^7.4.3",
+    "@babel/preset-react": "^7.0.0",
+    "babel-loader": "^8.0.5",
+    "css-loader": "^2.1.1",
+    "eslint": "^5.16.0",
+    "html-webpack-plugin": "^3.2.0",
+    "material-ui": "^0.20.2",
+    "mirador": "^3.0.0-alpha.5",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "style-loader": "^0.23.1",
+    "webpack": "~4.28.0",
+    "webpack-cli": "^3.3.1",
+    "webpack-dev-server": "^3.3.1"
+  },
+  "peerDependencies": {
+    "mirador": "^3.0.0-alpha.5",
+    "react": "16.x",
+    "react-dom": "16.x"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "webpack-dev-server --mode development"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ProjectMirador/mirador-ruler.git"
+  },
+  "keywords": [
+    "mirador",
+    "ruler",
+    "plugin"
+  ],
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ProjectMirador/mirador-ruler/issues"
+  },
+  "homepage": "https://github.com/ProjectMirador/mirador-ruler#readme",
+  "dependencies": {
+    "@babel/plugin-proposal-export-default-from": "^7.2.0",
+    "@material-ui/core": "^3.9.3",
+    "@material-ui/icons": "^3.0.2",
+    "babel-eslint": "^10.0.1",
+    "cypress": "^3.3.1",
+    "eslint-config-airbnb": "^17.1.0",
+    "eslint-config-react-app": "^4.0.1",
+    "eslint-plugin-flowtype": "^3.9.0",
+    "eslint-plugin-import": "^2.17.2",
+    "eslint-plugin-jest": "^22.5.1",
+    "eslint-plugin-jsx-a11y": "^6.2.1",
+    "eslint-plugin-react": "^7.13.0",
+    "eslint-plugin-react-hooks": "^1.6.0",
+    "lodash": "^4.17.11",
+    "openseadragon": "^2.4.0",
+    "prop-types": "^15.7.2",
+    "reselect": "^4.0.0",
+    "underscore": "^1.9.1"
+  }
+}
