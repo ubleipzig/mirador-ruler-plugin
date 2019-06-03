@@ -1,3 +1,4 @@
+mirador_ruler/cypress/integration/examples
 node_modules
 
 package-lock\.json
