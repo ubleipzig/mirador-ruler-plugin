@@ -1,0 +1,13 @@
+language: node_js
+node_js:
+  - 'lts/*'
+
+install:
+  - npm install -g codecov
+
+before_script:
+  - npm install
+
+script:
+  - npm test
+  - codecov
