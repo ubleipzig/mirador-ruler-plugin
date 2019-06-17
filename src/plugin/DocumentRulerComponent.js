@@ -52,19 +52,13 @@ class DocumentRulerComponent extends Component {
   }
 
   /**
-   * componentWillUpdate
+   * componentWillReceiveProps
    * @param {*} props
    * @param {*} state
    * @param {*} context
    */
-  componentWillUpdate(props, state, context) {
-
-  }
-
   componentWillReceiveProps(props, ctx) {
-    const { show } = props;
-
-    console.log('componentWillUpdate', show);
+    const { show } = this.props;
 
     if (show) {
       this.ruler.show();
@@ -79,7 +73,6 @@ class DocumentRulerComponent extends Component {
    */
   onMenuButtonClicked(event) {
     const { hideDocumentRuler, show, showDocumentRuler } = this.props;
-    console.log('onMenuButtonClicked', show);
     if (show) {
       hideDocumentRuler();
     } else {
