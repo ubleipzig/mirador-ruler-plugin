@@ -7,7 +7,7 @@ pipeline {
 
   environment {
     branch = 'master'
-    scmUrl = 'https://code.dev.sbb.berlin/HSP/indexupdateservice.git'
+    scmUrl = 'https://code.dev.sbb.berlin/HSP/prototypes/mirador-ruler.git'
   }
 
   stages {
