@@ -18,7 +18,9 @@ pipeline {
     }
 
     stage('Prerequisites') {
-      sh 'npm install'
+      steps {
+        sh 'npm install'
+      }
     }
 
     stage('Test') {
