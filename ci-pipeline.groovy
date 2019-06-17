@@ -25,7 +25,7 @@ pipeline {
 
     stage('Test') {
       steps {
-      // run cypress tests
+        echo 'run tests ...'
       }
     }
   }
