@@ -13,7 +13,7 @@ pipeline {
   stages {
     stage('Git checkout') {
       steps {
-        git branch: branch, credentialsId: 'Jenkins-GitLab', url: scmUrl
+        git branch: branch, credentialsId: '116b9191-eb90-4da0-8456-fe196f12c4bc', url: scmUrl
       }
     }
 
