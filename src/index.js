@@ -1,2 +1,7 @@
-export DocumentRulerComponent from './plugin/DocumentRulerComponent';
-export OSDReferenceComponent from './plugin/OsdReference';
+import DocumentRulerComponent from './DocumentRulerComponent';
+import OsdReference from './OsdReference';
+
+export default {
+  DocumentRulerComponent,
+  OsdReference
+}

@@ -1,20 +1,21 @@
 /* eslint-disable max-len */
 /* eslint-disable react/forbid-prop-types */
 import React, { Component, Fragment } from 'react';
-import { extend } from 'underscore';
+import { extend } from 'lodash';
 import PropTypes from 'prop-types';
-import { MiradorMenuButton } from 'mirador/dist/es/src/components/MiradorMenuButton';
+import { createCssNs } from 'css-ns';
+import Tooltip from '@material-ui/core/Tooltip';
+import IconButton from '@material-ui/core/IconButton';
 import RulerIcon from '@material-ui/icons/Straighten';
 import { getCanvasPhysicalDimensionService } from './selectors/canvases';
+import { getContainerId } from 'mirador/dist/es/src/state/selectors'
 import { DocumentRuler } from './DocumentRuler';
-// eslint-disable-next-line import/no-absolute-path
 import { OSDReferences } from './OsdReference';
 import { checkDimensionsService } from './util';
-
 /**
  *
  */
-class DocumentRulerComponent extends Component {
+export class DocumentRulerComponent extends Component {
   /**
    * constructor
    * @param {*} props
@@ -58,7 +59,7 @@ class DocumentRulerComponent extends Component {
    * @param {*} context
    */
   componentWillReceiveProps(props, ctx) {
-    const { show } = this.props;
+    const { show } = props;
 
     if (show) {
       this.ruler.show();
@@ -103,7 +104,7 @@ class DocumentRulerComponent extends Component {
             this.ruler.refresh(obj.tiledImage);
           });
         }
-      });
+      })
   }
 
   /**
@@ -112,6 +113,7 @@ class DocumentRulerComponent extends Component {
    */
   render() {
     const {
+      containerId,
       show,
       TargetComponent,
       targetProps,
@@ -127,12 +129,16 @@ class DocumentRulerComponent extends Component {
             top: 0,
           }}
         >
-          <MiradorMenuButton
-            aria-label="ruler"
-            onClick={this.onMenuButtonClicked}
-          >
-            <RulerIcon title={show ? 'show ruler' : 'hide ruler'} />
-          </MiradorMenuButton>
+          <Tooltip
+            PopperProps={{
+              container: document.querySelector(`#${containerId} .${createCssNs({ namespace: 'mirador', })('viewer')}`),
+            }}
+            title='ruler'>
+              <IconButton
+                onClick={this.onMenuButtonClicked}>
+                <RulerIcon title={show ? 'show ruler' : 'hide ruler'} />
+              </IconButton>
+            </Tooltip>
         </div>
         <TargetComponent {...targetProps} />
       </Fragment>
@@ -206,8 +212,9 @@ const mapStateToProps = (state, props) => {
     config: {
       color: '#000000',
     },
+    containerId: getContainerId(state),
     show,
-  };
+  }
 };
 
 /**
@@ -222,7 +229,7 @@ const mapDispatchToProps = (dispatch, props) => {
 };
 
 DocumentRulerComponent.propTypes = {
-  canvasService: PropTypes.array.isRequired,
+  canvasService: PropTypes.object.isRequired,
   config: PropTypes.object.isRequired,
   hideDocumentRuler: PropTypes.func.isRequired,
   show: PropTypes.bool.isRequired,

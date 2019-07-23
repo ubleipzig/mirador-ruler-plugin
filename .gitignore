@@ -1,4 +1,7 @@
 cypress/integration/examples
+cypress/videos
 node_modules
+package
+dist
 
 package-lock\.json
