@@ -1,5 +1,5 @@
 pipeline {
-  agent any
+  agent { label 'nodejs' }
 
   tools {
     nodejs 'nodejs-lts'
