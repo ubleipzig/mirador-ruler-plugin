@@ -18,7 +18,7 @@ install:
   - npm install -g codecov
 
 before_script:
-  - npm ci
+  - npm install
 
 script:
   - npm test
