@@ -7,6 +7,14 @@ context('Ruler Component', () => {
     cy.get('button[title="ruler"]').should('have.length', 1);
   });
 
+  it('a button to show the ruler is displayed', () => {
+    cy.get('button[title="ruler"]').should('have.length', 1);
+  });
+
+  it('this should fail', () => {
+    expect(true).to.equal(true)
+  })
+
   it('click on the ruler button shows/hides the ruler', () => {
     cy.get('.plugin-ruler').should('have.length', 0);
     cy.get('button[title="ruler"]').click();
