@@ -21,6 +21,7 @@ install:
 
 before_script:
   - npm install
+  - npm-install-peers
 
 script:
   - npm test

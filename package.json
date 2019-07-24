@@ -41,6 +41,7 @@
   },
   "dependencies": {
     "lodash": "^4.17.11",
+    "npm-install-peers": "^1.2.1",
     "prop-types": "^15.7.2",
     "reselect": "^4.0.0"
   },
