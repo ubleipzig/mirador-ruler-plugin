@@ -10,7 +10,7 @@ cache:
   # Caches $HOME/.npm when npm ci is default script command
   # Caches node_modules in all other cases
   # caching temporarily disabled, see https://github.com/cypress-io/cypress/issues/4595
-  ## npm: true
+  npm: false
   ## directories:
     # we also need to cache folder with Cypress binary
     ## - ~/.cache
