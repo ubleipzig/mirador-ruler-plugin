@@ -12,7 +12,7 @@ context('Ruler Component', () => {
   });
 
   it('this should fail', () => {
-    expect(true).to.equal(true)
+    expect(true).to.equal(false)
   })
 
   it('click on the ruler button shows/hides the ruler', () => {
