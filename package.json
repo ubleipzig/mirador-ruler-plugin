@@ -9,9 +9,8 @@
   "scripts": {
     "clean": "rm -rf dist package plugin.tar.gz",
     "build": "npm run clean && npx babel --presets=@babel/preset-react --plugins @babel/plugin-transform-modules-commonjs --out-dir dist src",
+    "deploy": "webpack --config ./config/webpack.config.js --mode production",
     "package": "npm run build && mkdir package && cp -r package.json dist package && tar -cf plugin.tar.gz package",
-    "cy:unit": "cypress run --spec './cypress/tests/**/*.spec.js' --reporter junit --reporter-options mochaFile=.result/result.xml,toConsole=true",
-    "cy:integration": "cypress run --spec './cypress/integration/**/*.spec.js' --reporter junit --reporter-options mochaFile=.result/result.xml,toConsole=true",
     "start": "webpack-dev-server --mode development",
     "test": "node ./scripts/cypress.js"
   },
@@ -32,6 +31,7 @@
     "cypress": "^3.4.0",
     "html-webpack-plugin": "^3.2.0",
     "mirador": "^3.0.0-alpha.16",
+    "npm-install-peers": "^1.2.1",
     "npm-run-all": "^4.1.5",
     "react": "^16.8.6",
     "react-dev-utils": "^9.0.1",
@@ -44,7 +44,6 @@
   },
   "dependencies": {
     "lodash": "^4.17.11",
-    "npm-install-peers": "^1.2.1",
     "prop-types": "^15.7.2",
     "reselect": "^4.0.0"
   },

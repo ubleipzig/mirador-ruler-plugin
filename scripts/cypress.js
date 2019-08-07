@@ -66,6 +66,7 @@ if (port == null) {
 
 const protocol = process.env.HTTPS === 'true' ? 'https' : 'http';
 const appName = require(paths.appPackageJson).name;
+const testResult = paths.testResult;
 const urls = prepareUrls(protocol, HOST, port);
 // Create a webpack compiler that is configured with custom messages.
 const compiler = createCompiler({webpack, config, appName, urls, useYarn});
@@ -84,8 +85,13 @@ return devServer.listen(port, HOST, err => {
     clearConsole();
   }
   console.log(chalk.cyan('Starting the development server...\n'));
+
   return cypress
     .run({
+      reporter: 'junit',
+      reporterOptions: {
+        mochaFile: testResult,
+      },
       spec: './cypress/**/*.spec.js',
     })
     .then(results => {

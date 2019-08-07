@@ -40,16 +40,8 @@ export class DocumentRulerComponent extends Component {
       show,
       viewer,
     });
-    this.ruler = this.ruler || new DocumentRuler(config);
-    this.enable(viewer);
 
-    if (show) {
-      this.ruler.show();
-    } else {
-      this.ruler.hide();
-    }
-
-    // ToDo add further handler
+    this.enable(viewer, config);
   }
 
   /**
@@ -58,8 +50,10 @@ export class DocumentRulerComponent extends Component {
    * @param {*} state
    * @param {*} context
    */
-  componentWillReceiveProps(props, ctx) {
+  componentWillReceiveProps(props) {
+    const { rulerEnabled } = this.state;
     const { show } = props;
+    if (!rulerEnabled) return;
 
     if (show) {
       this.ruler.show();
@@ -82,9 +76,9 @@ export class DocumentRulerComponent extends Component {
   }
 
   /**
-   * enable the ruler if the preconditions are met
+   * enable the ruler if preconditions are met
    */
-  enable(viewer) {
+  enable(viewer, config) {
     const { canvasService } = this.props;
     checkDimensionsService(canvasService)
       .then((service) => {
@@ -95,6 +89,7 @@ export class DocumentRulerComponent extends Component {
             mm: 1.0,
           };
           const pixelsPerMillimeter = 1 / (millimetersPerPhysicalUnit[service.physicalUnits] * service.physicalScale);
+          this.ruler = this.ruler || new DocumentRuler(config);
           this.ruler.PixelsPerMillimeter = pixelsPerMillimeter;
           this.setState(state => ({ ...state, rulerEnabled: true }));
           this.ruler.register();
@@ -119,7 +114,6 @@ export class DocumentRulerComponent extends Component {
       targetProps,
     } = this.props;
     const { rulerEnabled } = this.state;
-
     return rulerEnabled ? (
       <Fragment>
         <div
@@ -229,10 +223,9 @@ const mapDispatchToProps = (dispatch, props) => {
 };
 
 DocumentRulerComponent.propTypes = {
-  canvasService: PropTypes.object.isRequired,
+  canvasService: PropTypes.object,
   config: PropTypes.object.isRequired,
   hideDocumentRuler: PropTypes.func.isRequired,
-  show: PropTypes.bool.isRequired,
   showDocumentRuler: PropTypes.func.isRequired,
   TargetComponent: PropTypes.func.isRequired,
   targetProps: PropTypes.object.isRequired,

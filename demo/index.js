@@ -17,12 +17,18 @@ class Mirador extends React.Component {
 
   componentWillMount() {
     const store = createStore()
-    const manifest = "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00079445/manifest"
+    const manifests = [
+      "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00079445/manifest",
+      "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00079445/manifest",
+      "https://iiif.harvardartmuseums.org/manifests/object/299843"
+    ];
 
     store.dispatch(actions.setConfig(settings))
     store.dispatch(actions.setWorkspaceAddVisibility(true))
-    store.dispatch(actions.fetchManifest(manifest))
-    store.dispatch(actions.addWindow({manifestId: manifest}))
+    manifests.forEach(manifest => {
+      store.dispatch(actions.fetchManifest(manifest));
+      store.dispatch(actions.addWindow({manifestId: manifest}));
+    })
     store.dispatch(actions.setWorkspaceAddVisibility(false));
     this.setState({ store: store })
   }
