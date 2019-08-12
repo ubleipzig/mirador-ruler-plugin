@@ -1,16 +1,16 @@
 {
-  "name": "mirador-ruler",
+  "name": "mirador-ruler-plugin",
   "version": "0.1.0",
-  "description": "a pugon for mirador v3 that adds a ruler to the canvas view",
+  "description": "A plugin for Mirador v3 that adds a ruler to the canvas view",
   "main": "dist/index.js",
   "files": [
     "dist"
   ],
   "scripts": {
-    "clean": "rm -rf dist package plugin.tar.gz",
+    "clean": "rm -rf dist mirador-ruler-plugin mirador-ruler-plugin.tar.gz",
     "build": "npm run clean && npx babel --presets=@babel/preset-react --plugins @babel/plugin-transform-modules-commonjs --out-dir dist src",
     "deploy": "webpack --config ./config/webpack.config.js --mode production",
-    "package": "npm run build && mkdir package && cp -r package.json dist package && tar -cf plugin.tar.gz package",
+    "package": "npm run build && mkdir mirador-ruler-plugin && cp -r package.json dist mirador-ruler-plugin && tar -cf plugin.tar.gz mirador-ruler-plugin",
     "start": "webpack-dev-server --mode development",
     "test": "node ./scripts/cypress.js"
   },

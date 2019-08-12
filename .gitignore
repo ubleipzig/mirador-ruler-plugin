@@ -2,6 +2,7 @@ cypress/integration/examples
 cypress/videos
 node_modules
 package
+mirador-ruler-plugin
 dist
 
 package-lock\.json

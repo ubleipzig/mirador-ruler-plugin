@@ -34,13 +34,16 @@ class Mirador extends React.Component {
   }
 
   render() {
+
+    const documentRuler = plugins.createPlugin();
+
     return (
       <Provider store={this.state.store}>
         <PluginProvider
-          plugins={[plugins.DocumentRulerComponent, plugins.OsdReference]}
+          plugins={[documentRuler, plugins.OsdReference]}
           createRootReducer={createRootReducer}
         >
-          <MiradorApp/>
+          <MiradorApp />
         </PluginProvider>
       </Provider>
     )

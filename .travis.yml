@@ -17,7 +17,7 @@ cache:
     ## - /home/travis/.cache/Cypress
 
 install:
-  - npm install -g codecov
+  - npm install -g npm-install-peers
 
 before_script:
   - npm install

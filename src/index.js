@@ -1,7 +1,7 @@
-import DocumentRulerComponent from './DocumentRulerComponent';
+import { createPlugin } from './DocumentRulerComponent';
 import OsdReference from './OsdReference';
 
 export default {
-  DocumentRulerComponent,
+  createPlugin,
   OsdReference
 }

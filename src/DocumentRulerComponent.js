@@ -1,7 +1,7 @@
 /* eslint-disable max-len */
 /* eslint-disable react/forbid-prop-types */
 import React, { Component, Fragment } from 'react';
-import { extend } from 'lodash';
+import { clone, extend } from 'lodash';
 import PropTypes from 'prop-types';
 import { createCssNs } from 'css-ns';
 import Tooltip from '@material-ui/core/Tooltip';
@@ -12,6 +12,9 @@ import { getContainerId } from 'mirador/dist/es/src/state/selectors'
 import { DocumentRuler } from './DocumentRuler';
 import { OSDReferences } from './OsdReference';
 import { checkDimensionsService } from './util';
+
+let config;
+
 /**
  *
  */
@@ -31,17 +34,17 @@ export class DocumentRulerComponent extends Component {
    *
    */
   componentDidMount() {
-    const { config, show } = this.props;
+    const { show } = this.props;
     // eslint-disable-next-line react/destructuring-assignment
     const { windowId } = this.props.targetProps;
     const { viewer } = OSDReferences.get(windowId).current;
 
-    extend(config, {
+    const _config =extend(clone(config), {
       show,
       viewer,
     });
 
-    this.enable(viewer, config);
+    this.enable(viewer, _config);
   }
 
   /**
@@ -203,9 +206,6 @@ const mapStateToProps = (state, props) => {
 
   return {
     canvasService: getCanvasPhysicalDimensionService(state, { windowId }),
-    config: {
-      color: '#000000',
-    },
     containerId: getContainerId(state),
     show,
   }
@@ -224,21 +224,24 @@ const mapDispatchToProps = (dispatch, props) => {
 
 DocumentRulerComponent.propTypes = {
   canvasService: PropTypes.object,
-  config: PropTypes.object.isRequired,
+  config: PropTypes.object,
   hideDocumentRuler: PropTypes.func.isRequired,
   showDocumentRuler: PropTypes.func.isRequired,
   TargetComponent: PropTypes.func.isRequired,
   targetProps: PropTypes.object.isRequired,
 };
 
-export default {
-  component: DocumentRulerComponent,
-  mapDispatchToProps,
-  mapStateToProps,
-  mode: 'wrap',
-  name: 'DocumentRulerComponent',
-  reducers: {
-    ruler: documentRulerReducer,
-  },
-  target: 'WindowCanvasNavigationControls',
-};
+export const createPlugin = ( configuration ) => {
+  config = configuration || {};
+  return {
+    component: DocumentRulerComponent,
+    mapDispatchToProps,
+    mapStateToProps,
+    mode: 'wrap',
+    name: 'DocumentRulerComponent',
+    reducers: {
+      ruler: documentRulerReducer,
+    },
+    target: 'WindowCanvasNavigationControls',
+  }
+}
